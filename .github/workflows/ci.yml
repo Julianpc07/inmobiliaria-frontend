@@ -7,23 +7,24 @@ on:
 
 jobs:
   pruebas:
+    name: Pruebas, cobertura (mínimo 80 %) y build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: fetch solo en src/api.js
         run: |
-          if [ -d src ] && grep -rn "fetch(" src --include=*.js --include=*.jsx | grep -v "src/api.js"; then
+          if grep -rn "fetch(" src --include=*.js --include=*.jsx | grep -v "src/api.js" | grep -v ".test.jsx"; then
             echo "Hay fetch fuera de src/api.js"; exit 1
           fi
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Pruebas con cobertura y build
+          cache: npm
+      - run: npm ci
+      - name: Pruebas con cobertura
         run: |
-          if [ ! -f package.json ]; then
-            echo "Todavía no hay código del frontend; no hay pruebas que correr."
-            exit 0
+          if ! ls src/**/*.test.jsx src/*.test.jsx >/dev/null 2>&1; then
+            echo "Todavía no hay pruebas."; exit 0
           fi
-          npm ci
           npm test -- --run --coverage
-          npm run build
+      - run: npm run build
