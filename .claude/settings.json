@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test *)",
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(curl http://localhost*)",
+      "Bash(git diff *)",
+      "Bash(git status)"
+    ],
+    "deny": [
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(npm install *)",
+      "Edit(package.json)",
+      "Edit(vite.config.js)"
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "1"
+  }
+}
