@@ -52,6 +52,7 @@ Uso: `git checkout -b 005-catalogo-inmuebles`, `claude --agent orquestador-ui` y
 | `permissionMode: plan` fuera del orquestador | En modo plan no puede delegar; el plan se aprueba escribiendo «aprobado» |
 | `desarrollador-ui` puede marcar `specs/*/tasks.md` | Las tareas deben quedar marcadas |
 | Hook con `uv run --no-project python` | Python está instalado con uv |
+| En la spec 005 el `verificador-visual` no se ejecutó | Por tiempo. El orquestador no dio el CA7 por cumplido sin evidencia, así que lo verifiqué a mano con DevTools a 360 px y 1280 px; las capturas están en el [PR #1](https://github.com/Julianpc07/inmobiliaria-frontend/pull/1) |
 
 ## Calidad
 
